@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block nav %}
+
+<a href="{{ url_for('admin') }}"><i class="fas fa-plus"></i>Edit Path</a>
+
+{% endblock %}
+{% block content %}
+<form action="{{ url_for('showHod') }}" method="post">
+
+<h2>HOD</h2>
+<div>
+    <table style="width:100%">
+        <tr>
+            <th>ID</th>
+            <th>departname</th>
+            <th>starttime</th>
+            <th>show approveds</th>
+        </tr>
+        {% for x in items %}
+            <tr>
+                <td>{{x[0]}}</td>
+                <td>{{x[1]}}</td>
+                <td>{{x[2]}}</td>
+                <td><a href="{{url_for('show_approved_leaves',type='hod',type2 = x[0])}}">link</a></td>
+            </tr>
+        {% endfor %} 
+    </table> 
+</div>
+</form>
+{% endblock %}

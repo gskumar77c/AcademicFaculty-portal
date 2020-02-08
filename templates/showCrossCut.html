@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block nav %}
+
+<a href="{{ url_for('admin') }}"><i class="fas fa-plus"></i>Edit Path</a>
+
+{% endblock %}
+{% block content %}
+<form action="{{ url_for('showCrossCut') }}" method="post">
+
+<h2>Cross Faculty</h2>
+<div>
+    <table style="width:100%">
+        <tr>
+            <th>Faculty Id</th>
+            <th>position</th>
+            <th>starttime</th>
+            <th>approved leaves</th>
+        </tr>
+        {% for x in items %}
+            <tr>
+                <td>{{x[0]}}</td>
+                <td>{{x[1]}}</td>
+                <td>{{x[2]}}</td>
+                <td><a href="{{url_for('show_approved_leaves',type=x[1],type2 = x[0])}}">link</a></td>
+            </tr>
+        {% endfor %} 
+    </table> 
+</div>
+</form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="login">
+	<h1>Login</h1>
+	<div class="links">
+		<a href="{{ url_for('login') }}" class="active">Login</a>
+		<a href="{{ url_for('register') }}">Register</a>
+	</div>
+	<form action="{{ url_for('login') }}" method="post">
+		<label for="emailId">
+			<i class="fas fa-user"></i>
+		</label>
+		<input type="text" name="emailid" placeholder="Email" id="emailid" required>
+		<label for="password">
+			<i class="fas fa-lock"></i>
+		</label>
+		<input type="password" name="password" placeholder="Password" id="password" required>
+		
+		<div class="msg"><span style="color:red">{{msg}}</span></div>
+		<input type="submit" value="Login">
+	</form>
+</div>
+{% endblock %}

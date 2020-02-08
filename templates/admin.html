@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% block nav %}
+
+<a href="{{ url_for('admin') }}"><i class="fas fa-plus"></i>Edit Path</a>
+
+{% endblock %}
+
+{% block content %}
+<form action="{{ url_for('admin') }}" method="post">
+
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Change Path</h2>
+            <h3><span style="color:red">{{error}}</span></h3>
+            <h3><span style="color:blue">{{status}}</span></h3>    
+            <p>Current Path -> <span style="color:blue">{{path}}</span></p>
+            <div>        
+                <input type="text" name="path" placeholder="Path">
+                <input type="submit" name="savePath" value="savePath" method='POST'>
+            </div>
+            <h2>Change HOD</h2>
+            <h3><span style="color:red">{{error1}}</span></h3>
+            <h3><span style="color:blue">{{status1}}</span></h3>    
+        
+            <div>
+                <select id="changeHOD" name = "CHOD">
+                    <option value="cse">Computer scince</option>
+                    <option value="mec">Mechanical</option>
+                    <option value="che">Chemical</option>
+                    <option value="eee">Electrical</option>
+                </select>
+                <input type="text" name="newHOD" placeholder="emailid">
+                <input type="submit" name = "SetHOD" value="SetHOD" method = "POST">
+            </div>
+        
+            <h2>Change Dean</h2>
+            <h3><span style="color:red">{{error2}}</span></h3>
+            <h3><span style="color:blue">{{status2}}</span></h3>    
+        
+            <div>
+                <select id="changeDean" name = "CDEAN">
+                    <option value="deanfa">Dean Faculty Affairs</option>
+                    <option value="deanna">Dean Academic Affairs</option>
+                    <option value="deanra">Dean Research</option>
+                    <option value="deansa">Dean Student Affairs</option>
+                    <option value="adeanfa">Assosiate Dean Faculty Affairs</option>
+                    <option value="adeanna">Assosiate Dean Academic Affairs</option>
+                    <option value="adeanra">Assosiate Dean Research</option>
+                    <option value="adeansa">Assosiate Dean Student Affairs</option>
+                </select>
+                <input type="text" name="newDEAN" placeholder="emailid">
+                <input type="submit" name = "SetDEAN" value="SetDEAN" method = "POST">
+            </div>
+        
+            <h2>Change Director</h2>
+            <h3><span style="color:red">{{error3}}</span></h3>
+            <h3><span style="color:blue">{{status3}}</span></h3>    
+            <input type="text" name="newDIR" placeholder="emailid">
+            <input type="submit" name = "SetDIR" value="SetDIR" method = "POST">
+        </div>
+        <div class="col-md-4">
+            <div class="content-section">
+                <h3>Options</h3>
+                    <ul class="list-group">
+                        <li ><a href="{{ url_for('showFaculty') }}">Show Faculty </a></li>
+                        <li ><a href="{{ url_for('showHod') }}">Show HODs </a></li>
+                        <li ><a href="{{ url_for('showCrossCut') }}">Show Cross Cut Faculty </a></li>
+                        <li ><a href="{{ url_for('show_history_hod') }}">Show History of HOD </a></li>
+                        <li ><a href="{{ url_for('show_history_cross') }}">Show History of Cross Cut Faculty </a></li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+</form>
+
+{% endblock %}
+
+    
+

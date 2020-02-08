@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="register">
+	<h1>Register</h1>
+	<div class="links">
+		<a href="{{ url_for('login') }}">Login</a>
+		<a href="{{ url_for('register') }}" class="active">Register</a>
+	</div>
+	<form action="{{ url_for('register') }}" method="post" autocomplete="off">
+		<label for="username">
+				<i class="fas fa-user"></i>
+		</label>
+		<input type="text" name="username" placeholder="Username" id="username" required>
+		
+		<label for="email">
+			<i class="fas fa-envelope"></i>
+		</label>
+		<input type="text" name="emailid" placeholder="Email" id="emailid" required>
+		
+		<label for="password">
+			<i class="fas fa-lock"></i>
+		</label>
+		<input type="password" name="password" placeholder="Password" id="password" required>
+		
+		<label for="department">
+			<i class="fas fa-user"></i>
+		</label>
+		<select id="department" name = "department" placeholder="department">
+            <option value="cse">Computer scince</option>
+            <option value="mec">Mechanical</option>
+            <option value="che">Chemical</option>
+            <option value="eee">Electrical</option>
+		</select>
+		<div class="msg"><span style="color:red">{{msg}}</span></div>
+		<input type="submit" value="Register">
+	</form>
+</div>
+{% endblock %}

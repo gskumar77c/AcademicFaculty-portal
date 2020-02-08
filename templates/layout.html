@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Faculty Portal</title>    
+    <link rel="stylesheet" type = 'text/css' href="{{ url_for('static', filename='css/style.css') }}" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    
+</head>
+
+<body class="loggedin">
+    <nav class="navtop">
+        <div>
+            <h1>Faculty Portal</h1>
+            <a href="{{ url_for('index') }}"><i class="fas fa-home"></i>Home</a>
+            {% block nav %}               
+            {% endblock %}
+            <a href="{{ url_for('login') }}"><i class="fas fa-user"></i>Login</a>
+            <a href="{{ url_for('register') }}"><i class="fas fa-user-circle"></i>Register</a>
+            <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        </div>
+    </nav>
+    <!-- <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul> -->
+    {%block body%}{% endblock %} 
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+	</div>
+</body>
+</html>

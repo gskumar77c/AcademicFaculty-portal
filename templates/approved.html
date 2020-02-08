@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block nav %}
+
+<a href="{{ url_for('admin') }}"><i class="fas fa-plus"></i>Edit Path</a>
+
+{% endblock %}
+{% block content %}
+
+
+<h2>Approved or Rejected List</h2>
+<div>
+    <table style="width:100%">
+        <tr>
+            <th>facultyid</th>
+            <th>status</th>
+            <th>comments</th>
+        </tr>
+        {% for x in posts %}
+            <tr>
+                <td>{{x[1]}}</td>
+                <td>{{x[0]}}</td>
+                <td><a href="{{url_for('showcomments',type= x[2])}}">link</a></td>
+            </tr>
+        {% endfor %} 
+    </table> 
+</div>
+{% endblock %}

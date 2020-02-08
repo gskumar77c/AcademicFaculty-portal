@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block nav %}
+<a href="{{ url_for('edit') }}"><i class="fas fa-plus"></i>Edit Info</a>
+{% endblock %}
+
+{% block content %}
+
+<h2>Edit Profile</h2>
+    <form action="{{ url_for('edit') }}" method="post">
+    <div>
+        <h3><span style="color:red">{{error}}</span></h3>
+        <p>Wanna add: </p>
+            <input type="submit" name="Publications" value="Publications" method='POST'>
+            <input type="submit" name="Teaching" value="Teaching">
+            <input type="submit" name="Grants" value="Grants">
+            <input type="submit" name="Awards" value="Awards">
+            <input type="submit" name="Misslaneous" value="Misslaneous">
+    </div>
+    <div>
+        <textarea name="infoProf" cols="85" rows="6"></textarea> 
+    </div>
+    <div>
+        <p>Wanna Delete</p>
+        <input type="submit" name="PublicationsD" value="Publications" method='POST'>
+        <input type="submit" name="TeachingD" value="Teaching">
+        <input type="submit" name="GrantsD" value="Grants">
+        <input type="submit" name="AwardsD" value="Awards">
+        <input type="submit" name="MisslaneousD" value="Misslaneous">        
+        <input type="text" name="delete" placeholder="index" id="del">
+    </div>
+    
+</form>
+{% endblock %}

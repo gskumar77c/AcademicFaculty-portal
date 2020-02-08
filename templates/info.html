@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+
+{% block nav %}
+<a href="{{ url_for('edit') }}"><i class="fas fa-plus"></i>Edit Info</a>
+{% endblock %}
+
+{% block content %}
+
+<h2>Profile Page</h2>
+    <div>
+        <p>Your account details are below:</p>
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td>{{ info['name'] }}</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>{{ info['email'] }}</td>
+            </tr>
+            <tr>
+                <td>Department:</td>
+                <td>{{ info['department'] }}</td>
+            </tr>
+            {% if pos %}
+            <tr>
+                <td>Position:</td>
+                <td>{{ pos }}</td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+    <div>
+        {% if  info['publication']|length > 0 %}
+            <h2>Publications</h2>
+            {% for i in range( info['publication']|length ) %}
+                <p> {{ i+1 }}. {{info['publication'][i]}}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% if  info['grants']|length > 0 %}
+            <h2>Grants</h2>
+            {% for i in range( info['grants']|length ) %}
+                <p> {{ i+1 }}. {{info['grants'][i]}}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% if  info['awards']|length > 0 %}
+            <h2>Awards</h2>
+            {% for i in range( info['awards']|length ) %}
+                <p>{{ i+1 }}. {{info['awards'][i]}}</p>
+            {% endfor %}
+        {% endif %}
+        {% if  info['teaching']|length > 0 %}
+            <h2>Teaching</h2>
+            {% for i in range( info['teaching']|length ) %}
+                <p>{{ i+1 }}. {{info['teaching'][i]}}</p>
+            {% endfor %}
+        {% endif %}
+        
+        {% if  info['miss']|length > 0 %}
+            <h2>Misslaneous</h2>
+            {% for i in range( info['miss']|length ) %}
+                <p>{{ i+1 }}. {{info['miss'][i]}}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <div class="content-section">
+            <h3>Options</h3>
+                <ul class="list-group">
+                    <li ><a href="{{ url_for('showFaculty') }}">Show Faculty </a></li>
+                    <li ><a href="{{ url_for('showHod') }}">Show HODs </a></li>
+                    <li ><a href="{{ url_for('showCrossCut') }}">Show Cross Cut Faculty </a></li>
+                    <li ><a href="{{ url_for('show_history_hod') }}">Show History of HOD </a></li>
+                    <li ><a href="{{ url_for('show_history_cross') }}">Show History of Cross Cut Faculty </a></li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    {% if pos != "Director" %}
+    <button class = "button1" onclick="document.getElementById('popleave').style.display='block'">Create Leave</button> 
+        {% with messages = get_flashed_messages()%}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div>{{message}}</div>
+                    {%endfor%}
+                {% endif%}
+            
+         {%endwith%}
+    
+    <div id = popleave>
+        <form action = "{{url_for('request_for_leave')}}" method = "post">
+         <p>instructor id : <input type="email" name="id" value = {{info.email}} readonly></p>
+         <p>no of days : <input type = "number" name = "nm" /></p>
+         <p>Reason(comment) : <input type="text" name="cm" required="required" /></p>
+         <p><input type = "submit" value = "submit" /></p>
+        </form>
+    
+    </div>
+    
+        <form action = "{{url_for('my_leaves')}}" method = "post">
+         <p><input type="hidden" name="id" value = {{info.email}} readonly></p>
+         <p><input type = "submit" class="button1" value = "leaveslist" /></p>
+        </form>
+    {% endif %}
+    {% if pos %}
+        <form action = "{{url_for('req_leaves')}}" method = "post">
+         <p><input type="hidden" name="id" value = {{info.email}} readonly></p>
+         <input class="button1" type = "submit" value = "requested leaves" />
+        </form>
+    {% endif %}
+{% endblock %}

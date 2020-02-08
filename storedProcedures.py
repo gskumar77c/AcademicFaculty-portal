@@ -1,0 +1,4 @@
+historyHODTrigger()
+HistoryCrossCutTrigger()
+changeCrossCutFaculty()
+ChangeHod()

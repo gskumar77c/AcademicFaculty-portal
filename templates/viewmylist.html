@@ -1,0 +1,74 @@
+{%extends 'layout.html' %}
+{% block content %}
+
+{% for r in posts %}             
+<div>
+<table>
+    <tr>
+        <th>Faculty Id</th>
+        <td>{{r[2]}}</td>
+    </tr>
+        
+    <tr>
+        
+        <th>Status</th>
+        <td>{{r[1]}}</td>
+        
+    </tr>
+        
+        <th>No of Days</th>
+        <td>{{r[5]}}</td>
+        
+    </tr>
+    {% if r[2] != r[4] %}
+    <tr>
+        <th>Currently With</th>
+        <td>{{r[3]}}</td>
+        
+    </tr>
+    {% endif %}
+
+    {% if r[2] == r[4] %}
+    <tr>
+        <th>Redirected by</th>
+        <td>{{r[3]}}</td>
+    </tr>
+    {% endif %}
+    <tr>
+            <th>Currently With ID</th>
+            <td>{{r[4]}}</td> 
+    </tr>
+
+    <tr>
+        
+        <th>last Updated</th>
+        <td>{{r[6]}}</td>
+        
+    </tr>
+    <tr>
+        
+        <th>Path</th>
+        <td>{{r[7]}}</td>
+        
+    </tr>
+    {% if r[8]!=0 %}
+    <tr>
+        <th>Request for borrowing next year leaves<br>Number of Leaves Borrowing</th>
+        <td><br>{{r[8]}}</td>
+    </tr>
+    {% endif %}
+
+</table> 
+
+<p><a href="{{url_for('showcomments',type= r[0])}}">comments</a></p>
+<form action = "{{url_for('forward')}}" method = "post">
+    <input type="hidden" name="id" value = {{r[0]}} readonly>
+    {% if r[1] == 'redirected' %}
+        type comment : <input type="text" name="cm" required="required">
+        <button type="submit" >forward</button>
+    {%endif%}
+    
+</form>
+</div>
+{% endfor %}
+{%endblock%}
